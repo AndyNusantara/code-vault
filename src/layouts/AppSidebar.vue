@@ -102,14 +102,14 @@
     <v-divider color="border-color" />
 
     <div class="pa-4">
-      <h5 class="text-text-tertiary text-caption font-weight-medium mb-2">
+      <h5 class="text-on-surface text-caption font-weight-medium mb-2">
         STATS
       </h5>
       <v-card variant="outlined" color="surface-variant">
         <v-list density="compact" bg-color="transparent">
           <v-list-item class="px-4">
             <template #prepend>
-              <span class="text-text-secondary text-caption">Total</span>
+              <span class="text-on-surface text-caption">Total</span>
             </template>
             <template #append>
               <span class="text-on-surface font-weight-medium">
@@ -119,7 +119,7 @@
           </v-list-item>
           <v-list-item class="px-4">
             <template #prepend>
-              <span class="text-text-secondary text-caption">Favorites</span>
+              <span class="text-on-surface text-caption">Favorites</span>
             </template>
             <template #append>
               <span class="text-on-surface font-weight-medium">

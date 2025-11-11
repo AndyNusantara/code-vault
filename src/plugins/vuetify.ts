@@ -31,7 +31,6 @@ export default createVuetify({
 
           // Text colors
           "on-surface": "#1a202c", // --text-primary
-          "on-background": "#1a202c", // --text-primary
           "on-surface-variant": "#4a5568", // --text-secondary
 
           // State colors
@@ -59,7 +58,6 @@ export default createVuetify({
 
           // Text colors
           "on-surface": "#f1f5f9", // --text-primary
-          "on-background": "#f1f5f9", // --text-primary
           "on-surface-variant": "#cbd5e1", // --text-secondary
 
           // State colors

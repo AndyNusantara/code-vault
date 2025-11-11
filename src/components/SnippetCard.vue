@@ -55,13 +55,18 @@ import { codeToHtml } from "shiki";
 import { onMounted, ref } from "vue";
 import { useSnippetStore } from "@/stores/snippetStore";
 import type { Snippet } from "@/types/snippet";
+import { useTheme } from "vuetify";
 
 const props = defineProps<{
   snippet: Snippet;
 }>();
 
 const { toggleFavorite } = useSnippetStore();
-const codeSnippet = ref();
+const theme = useTheme();
+
+const lightCode = ref("");
+const darkCode = ref("");
+const codeSnippet = ref("");
 
 const toggleFav = () => {
   toggleFavorite(props.snippet.id);
@@ -72,11 +77,28 @@ const copyCode = () => {
 };
 
 onMounted(async () => {
-  codeSnippet.value = await codeToHtml(props.snippet.code, {
-    lang: props.snippet.language,
-    theme: "vitesse-dark",
-  });
+  const [light, dark] = await Promise.all([
+    codeToHtml(props.snippet.code, {
+      lang: props.snippet.language,
+      theme: "vitesse-light",
+    }),
+    codeToHtml(props.snippet.code, {
+      lang: props.snippet.language,
+      theme: "vitesse-dark",
+    }),
+  ]);
+
+  lightCode.value = light;
+  darkCode.value = dark;
+  codeSnippet.value = theme.global.current.value.dark ? dark : light;
 });
+
+watch(
+  () => theme.global.current.value.dark,
+  (isDark) => {
+    codeSnippet.value = isDark ? darkCode.value : lightCode.value;
+  }
+);
 </script>
 
 <style scoped>
@@ -190,5 +212,17 @@ onMounted(async () => {
 .code-outer-container:hover .copy-floating-btn {
   opacity: 1;
   display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
 }
 </style>

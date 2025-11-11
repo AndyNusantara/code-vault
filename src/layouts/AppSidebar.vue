@@ -75,36 +75,37 @@
 
     <v-divider color="border-color" />
 
-    <!-- Filters -->
     <div class="pa-4">
-      <h5 class="on-surface text-caption font-weight-medium mb-2">FILTERS</h5>
+      <h5 class="on-surface text-caption font-weight-medium mb-4">FILTERS</h5>
       <v-select
         v-model="selectedFramework"
-        :items="DROPDOWN_DATA"
+        :items="FRAMEWORK_DATA"
         density="compact"
         variant="outlined"
-        placeholder="Select Framework"
-        hide-details
         bg-color="input-bg"
-        :color="$vuetify.theme.current.dark ? 'border-color' : 'border-color'"
+        color="border-color"
+        label="Framework"
+        clearable
+      />
+      <v-select
+        v-model="selectedLanguage"
+        :items="LANGUAGE_DATA"
+        density="compact"
+        variant="outlined"
+        bg-color="input-bg"
+        color="border-color"
+        label="Language"
+        clearable
       />
     </div>
 
-    <v-divider
-      :color="$vuetify.theme.current.dark ? 'border-color' : 'border-color'"
-    ></v-divider>
+    <v-divider color="border-color" />
 
-    <!-- Stats -->
     <div class="pa-4">
       <h5 class="text-text-tertiary text-caption font-weight-medium mb-2">
         STATS
       </h5>
-      <v-card
-        variant="outlined"
-        :color="
-          $vuetify.theme.current.dark ? 'surface-variant' : 'surface-variant'
-        "
-      >
+      <v-card variant="outlined" color="surface-variant">
         <v-list density="compact" bg-color="transparent">
           <v-list-item class="px-4">
             <template #prepend>
@@ -133,9 +134,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Framework } from "@/types/snippet";
+import type { Framework, Language } from "@/types/snippet";
 import { computed, ref } from "vue";
-import { DROPDOWN_DATA } from "@/assets/data/dropdown";
+import { FRAMEWORK_DATA, LANGUAGE_DATA } from "@/assets/data/dropdown";
 import { useSnippetStore } from "@/stores/snippetStore";
 
 const isMobile = inject<boolean>("is-mobile");
@@ -155,6 +156,12 @@ const selectedFramework = computed({
   get: () => filterState.value.selectedFramework,
   set: (value: Framework | null) =>
     snippetStore.updateFilter({ selectedFramework: value }),
+});
+
+const selectedLanguage = computed({
+  get: () => filterState.value.selectedLanguage,
+  set: (value: Language | null) =>
+    snippetStore.updateFilter({ selectedLanguage: value }),
 });
 
 const setActiveView = (view: "all" | "favorites" | "recent") => {

@@ -24,7 +24,7 @@
         <v-chip
           v-if="snippet.framework !== 'none'"
           class="chip"
-          :class="snippet.framework + '-fw'"
+          :class="snippet.framework"
           size="small"
         >
           {{ snippet.framework }}
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Code -->
-      <v-sheet class="code-outer-container w-100 position-relative">
+      <v-sheet class="code-outer-container w-100 position-relative rounded-lg">
         <v-btn
           icon
           variant="flat"
@@ -42,11 +42,7 @@
         >
           <v-icon>mdi-content-copy</v-icon>
         </v-btn>
-        <v-sheet
-          class="w-100 h-100 overflow-auto border-sm rounded-sm"
-          variant="outlined"
-          rounded="lg"
-        >
+        <v-sheet class="w-100 h-100 overflow-auto border-sm rounded-md" rounded>
           <div class="code" v-html="codeSnippet" />
         </v-sheet>
       </v-sheet>
@@ -100,14 +96,6 @@ onMounted(async () => {
   background-color: #3178c6;
   color: #ffffff;
 }
-.chip.vue {
-  background-color: #41b883;
-  color: #ffffff;
-}
-.chip.react {
-  background-color: #61dafb;
-  color: #000000;
-}
 .chip.css {
   background-color: #1572b6;
   color: #ffffff;
@@ -141,11 +129,11 @@ onMounted(async () => {
   color: #ffffff;
 }
 
-.chip.vue-fw {
+.chip.vue {
   background-color: #41b883;
   color: #ffffff;
 }
-.chip.react-fw {
+.chip.reactjs {
   background-color: #61dafb;
   color: #000000;
 }
@@ -168,10 +156,6 @@ onMounted(async () => {
 .chip.nuxtjs {
   background-color: #00dc82;
   color: #000000;
-}
-.chip.none-fw {
-  background-color: #6b7280;
-  color: #ffffff;
 }
 
 .code-outer-container {

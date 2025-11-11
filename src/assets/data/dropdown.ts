@@ -1,14 +1,32 @@
 import type { Framework, Language, StylingTool } from "@/types/snippet";
 
-export const DROPDOWN_DATA: { value: Framework; label: string }[] = [
-  { label: "none", value: "none" },
-  { label: "svelte", value: "svelte" },
-  { label: "vue", value: "vue" },
-  { label: "reactjs", value: "reactjs" },
-  { label: "express", value: "express" },
-  { label: "nextjs", value: "nextjs" },
-  { label: "angular", value: "angular" },
-  { label: "nuxt", value: "nuxt" },
+export const FRAMEWORK_DATA: Framework[] = [
+  "svelte",
+  "vue",
+  "reactjs",
+  "express",
+  "nextjs",
+  "angular",
+  "nuxt",
+];
+
+export const LANGUAGE_DATA: Language[] = [
+  "cpp",
+  "csharp",
+  "css",
+  "go",
+  "html",
+  "java",
+  "javascript",
+  "less",
+  "markdown",
+  "php",
+  "python",
+  "ruby",
+  "rust",
+  "scss",
+  "sql",
+  "typescript",
 ];
 
 export const FRAMEWORK_COMPATIBILITY: Record<Language, Framework[]> = {

@@ -119,7 +119,7 @@ export const useSnippetStore = defineStore("snippets", () => {
     }
 
     if (
-      filterState.value.selectedFramework &&
+      filterState.value.selectedStylingTool &&
       filterState.value.selectedStylingTool !== "none"
     ) {
       result = result.filter(

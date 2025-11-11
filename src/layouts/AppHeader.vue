@@ -59,7 +59,7 @@
           placeholder="Search snippets..."
           prepend-inner-icon="mdi-magnify"
           hide-details
-          class="flex-grow-1 mr-2"
+          class="flex-grow-1 px-4"
         />
 
         <v-btn color="primary" @click="showAddForm = true" icon size="small">

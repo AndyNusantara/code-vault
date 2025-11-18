@@ -1,18 +1,21 @@
 <template>
-  <v-card variant="outlined" class="h-100">
+  <v-card variant="outlined" b class="h-100">
     <!-- Header -->
-    <v-card-item>
-      <v-card-title class="d-flex justify-space-between align-center">
+    <v-list-item class="px-6" height="88">
+      <template v-slot:title>
         <span class="text-h6 text-wrap">
           {{ snippet.title }}
         </span>
+      </template>
+
+      <template v-slot:append>
         <v-btn icon variant="text" @click="toggleFav">
           <v-icon :color="snippet.isFavorite ? 'yellow' : 'white'">
             {{ snippet.isFavorite ? "mdi-star" : "mdi-star-outline" }}
           </v-icon>
         </v-btn>
-      </v-card-title>
-    </v-card-item>
+      </template>
+    </v-list-item>
 
     <!-- Content -->
     <v-card-text class="d-flex flex-column h-50 px-4">

@@ -9,15 +9,19 @@
         <router-view />
       </v-container>
     </v-main>
-    <FormModal
-      v-if="modalStore.isOpen"
-      :is-create="true"
-      @close="modalStore.closeModal"
-    />
+
+    <v-overlay
+      :model-value="modalStore.isOpen"
+      class="align-center justify-center"
+      scroll-strategy="block"
+      @update:model-value="modalStore.toggleModal()"
+    >
+      <FormModal v-if="modalStore.isOpen" :is-create="true" />
+    </v-overlay>
 
     <v-overlay
       :model-value="false"
-      class="sidebar-overlay align-start justify-start"
+      class="align-start justify-start"
       @click="isSidebarCollapsed = true"
     />
   </v-app>
@@ -36,7 +40,6 @@ const theme = useTheme();
 
 const isMobile = ref(false);
 const isSidebarCollapsed = ref(false);
-const layoutMode = computed(() => (isMobile.value ? "mobile" : "desktop"));
 
 provide(
   "is-mobile",
@@ -44,7 +47,7 @@ provide(
 );
 
 const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 768;
+  isMobile.value = window.innerWidth <= 820;
   isSidebarCollapsed.value = isMobile.value;
 };
 
@@ -66,16 +69,3 @@ onUnmounted(() => {
   window.removeEventListener("resize", checkMobile);
 });
 </script>
-
-<style scoped>
-/* .main-content {
-  display: flex;
-  flex-direction: column;
-  background: var(--app-bg);
-}
-
-.page-content {
-  flex: 1;
-  overflow-y: auto;
-} */
-</style>

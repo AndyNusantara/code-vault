@@ -16,7 +16,7 @@
     <template #append>
       <div
         v-if="!isMobile"
-        class="d-flex align-center gx-2"
+        class="d-flex align-center ga-2"
         style="width: 450px"
       >
         <v-text-field
@@ -36,7 +36,7 @@
 
         <v-btn
           color="primary"
-          @click="showAddForm = true"
+          @click="showAddForm"
           prepend-icon="mdi-plus"
           size="small"
         >
@@ -62,7 +62,7 @@
           class="flex-grow-1 px-4"
         />
 
-        <v-btn color="primary" @click="showAddForm = true" icon size="small">
+        <v-btn color="primary" @click="showAddForm" icon size="small">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-toolbar>
@@ -74,6 +74,7 @@
 import { computed, inject, ref } from "vue";
 import { useSnippetStore } from "@/stores/snippetStore";
 import { useTheme } from "vuetify";
+import { useModalStore } from "@/stores/modalStore";
 
 const props = defineProps({
   toggleSidebar: {
@@ -85,20 +86,20 @@ const props = defineProps({
 const isMobile = inject<boolean>("is-mobile");
 
 const theme = useTheme();
+const modalStore = useModalStore();
 const snippetStore = useSnippetStore();
 const { updateFilter, filterState } = snippetStore;
-
-const showAddForm = ref(false);
 
 const searchQuery = computed({
   get: () => filterState.searchQuery,
   set: (value: string) => updateFilter({ searchQuery: value }),
 });
 
+const showAddForm = () => modalStore.toggleModal();
+
 const toggleTheme = () => {
   theme.toggle();
   localStorage.setItem("theme", theme.name.value);
-  console.log(theme.name.value);
 };
 </script>
 

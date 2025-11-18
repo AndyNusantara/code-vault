@@ -13,7 +13,7 @@ export const useSnippetStore = defineStore("snippets", () => {
     showFavorites: false,
   });
 
-  const loadFromStorage = (): void => {
+  const loadFromStorage = () => {
     try {
       const stored = localStorage.getItem("snippets");
       if (stored) {
@@ -28,7 +28,7 @@ export const useSnippetStore = defineStore("snippets", () => {
     }
   };
 
-  const saveToStorage = (): void => {
+  const saveToStorage = () => {
     try {
       localStorage.setItem("snippets", JSON.stringify(snippets.value));
     } catch (error) {
@@ -36,51 +36,48 @@ export const useSnippetStore = defineStore("snippets", () => {
     }
   };
 
-  const addSnippet = (formData: SnippetFormData): string => {
+  const addSnippet = (formData: SnippetFormData) => {
     const newSnippet: Snippet = {
       ...formData,
       id: generateId(),
       isFavorite: false,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
     snippets.value.unshift(newSnippet);
     return newSnippet.id;
   };
 
-  const updateSnippet = (
-    id: string,
-    updates: Partial<SnippetFormData>
-  ): void => {
+  const updateSnippet = (id: string, updates: Partial<SnippetFormData>) => {
     const index = snippets.value.findIndex((s) => s.id === id);
     if (index !== -1) {
       snippets.value[index] = {
         ...snippets.value[index],
         ...updates,
-        updatedAt: new Date(),
+        updatedAt: new Date().toISOString(),
       } as Snippet;
     }
   };
 
-  const deleteSnippet = (id: string): void => {
+  const deleteSnippet = (id: string) => {
     const index = snippets.value.findIndex((s) => s.id === id);
     if (index !== -1) {
       snippets.value.splice(index, 1);
     }
   };
 
-  const toggleFavorite = (id: string): void => {
+  const toggleFavorite = (id: string) => {
     const snippet = snippets.value.find((s) => s.id === id);
     if (snippet) {
       snippet.isFavorite = !snippet.isFavorite;
     }
   };
 
-  const updateFilter = (updates: Partial<FilterState>): void => {
+  const updateFilter = (updates: Partial<FilterState>) => {
     Object.assign(filterState.value, updates);
   };
 
-  const clearFilters = (): void => {
+  const clearFilters = () => {
     filterState.value = {
       searchQuery: "",
       selectedLanguage: null,
@@ -90,7 +87,7 @@ export const useSnippetStore = defineStore("snippets", () => {
     };
   };
 
-  const filteredSnippets = computed((): Snippet[] => {
+  const filteredSnippets = computed(() => {
     let result = snippets.value;
 
     if (filterState.value.searchQuery) {
@@ -135,13 +132,13 @@ export const useSnippetStore = defineStore("snippets", () => {
     return result;
   });
 
-  const favoriteSnippets = computed((): Snippet[] => {
+  const favoriteSnippets = computed(() => {
     return snippets.value.filter((s) => s.isFavorite);
   });
 
-  const totalSnippets = computed((): number => snippets.value.length);
+  const totalSnippets = computed(() => snippets.value.length);
 
-  const generateId = (): string => {
+  const generateId = () => {
     return Date.now().toString(36) + Math.random().toString(36).slice(2);
   };
 

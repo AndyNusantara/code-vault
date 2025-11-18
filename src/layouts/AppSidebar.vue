@@ -14,7 +14,7 @@
         </div>
       </v-list-item>
 
-      <v-divider color="border-color" />
+      <v-divider />
 
       <v-list-subheader class="font-weight-medium">
         NAVIGATION
@@ -73,7 +73,7 @@
       </v-list-item>
     </v-list>
 
-    <v-divider color="border-color" />
+    <v-divider />
 
     <div class="pa-4">
       <h5 class="on-surface text-caption font-weight-medium mb-4">FILTERS</h5>
@@ -82,8 +82,7 @@
         :items="FRAMEWORK_DATA"
         density="compact"
         variant="outlined"
-        bg-color="input-bg"
-        color="border-color"
+        border="outline sm opacity-100"
         label="Framework"
         clearable
       />
@@ -92,22 +91,21 @@
         :items="LANGUAGE_DATA"
         density="compact"
         variant="outlined"
-        bg-color="input-bg"
-        color="border-color"
+        border="outline sm opacity-100"
         label="Language"
         clearable
       />
     </div>
 
-    <v-divider color="border-color" />
+    <v-divider />
 
     <div class="pa-4">
       <h5 class="text-on-surface text-caption font-weight-medium mb-2">
         STATS
       </h5>
-      <v-card variant="outlined" color="surface-variant">
+      <v-card variant="outlined" border="outline sm opacity-100" class="px-2">
         <v-list density="compact" bg-color="transparent">
-          <v-list-item class="px-4">
+          <v-list-item>
             <template #prepend>
               <span class="text-on-surface text-caption">Total</span>
             </template>
@@ -117,7 +115,10 @@
               </span>
             </template>
           </v-list-item>
-          <v-list-item class="px-4">
+
+          <v-divider />
+
+          <v-list-item>
             <template #prepend>
               <span class="text-on-surface text-caption">Favorites</span>
             </template>

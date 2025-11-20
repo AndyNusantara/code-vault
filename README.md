@@ -35,7 +35,7 @@ A beautiful, offline-first code snippet manager built with Vue 3 and TypeScript.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/andynusantara/codevault.git
+   git clone https://github.com/AndyNusantara/code-vault.git
    cd codevault
 
    ```

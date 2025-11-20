@@ -1,6 +1,5 @@
 <template>
   <v-card variant="outlined" b class="h-100">
-    <!-- Header -->
     <v-list-item class="px-6" height="88">
       <template v-slot:title>
         <span class="text-h6 text-wrap">
@@ -9,6 +8,9 @@
       </template>
 
       <template v-slot:append>
+        <v-btn icon variant="text" @click="editSnippet">
+          <v-icon icon="mdi-pencil" />
+        </v-btn>
         <v-btn icon variant="text" @click="toggleFav">
           <v-icon :color="snippet.isFavorite ? 'yellow' : 'white'">
             {{ snippet.isFavorite ? "mdi-star" : "mdi-star-outline" }}
@@ -17,15 +19,13 @@
       </template>
     </v-list-item>
 
-    <!-- Content -->
     <v-card-text class="d-flex flex-column h-50 px-4">
-      <!-- Chips -->
       <div class="d-flex ga-3 chip-wrapper mb-4">
         <v-chip class="chip" :class="snippet.language" size="small">
           {{ snippet.language }}
         </v-chip>
         <v-chip
-          v-if="snippet.framework !== 'none'"
+          v-if="snippet.framework !== null || snippet.framework !== 'none'"
           class="chip"
           :class="snippet.framework"
           size="small"
@@ -34,7 +34,6 @@
         </v-chip>
       </div>
 
-      <!-- Code -->
       <v-sheet class="code-outer-container w-100 position-relative rounded-lg">
         <v-btn
           icon
@@ -43,7 +42,7 @@
           class="copy-floating-btn"
           @click="copyCode"
         >
-          <v-icon>mdi-content-copy</v-icon>
+          <v-icon icon="mdi-content-copy" />
         </v-btn>
         <v-sheet class="w-100 h-100 overflow-auto border-sm rounded-md" rounded>
           <div class="code" v-html="codeSnippet" />
@@ -59,12 +58,14 @@ import { onMounted, ref } from "vue";
 import { useSnippetStore } from "@/stores/snippetStore";
 import type { Snippet } from "@/types/snippet";
 import { useTheme } from "vuetify";
+import { useModalStore } from "@/stores/modalStore";
 
 const props = defineProps<{
   snippet: Snippet;
 }>();
 
 const { toggleFavorite } = useSnippetStore();
+const modalStore = useModalStore();
 const theme = useTheme();
 
 const lightCode = ref("");
@@ -77,6 +78,10 @@ const toggleFav = () => {
 
 const copyCode = () => {
   navigator.clipboard.writeText(props.snippet.code);
+};
+
+const editSnippet = () => {
+  modalStore.toggleModal(props.snippet);
 };
 
 onMounted(async () => {

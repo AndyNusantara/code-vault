@@ -10,14 +10,9 @@
       </v-container>
     </v-main>
 
-    <v-overlay
-      :model-value="modalStore.isOpen"
-      class="align-center justify-center"
-      scroll-strategy="block"
-      @update:model-value="modalStore.toggleModal()"
-    >
-      <FormModal v-if="modalStore.isOpen" :is-create="true" />
-    </v-overlay>
+    <v-dialog v-model="modalStore.isOpen" width="auto">
+      <FormModal :is-create="true" />
+    </v-dialog>
 
     <v-overlay
       :model-value="false"

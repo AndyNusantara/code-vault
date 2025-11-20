@@ -119,10 +119,7 @@ watch(
 
 <style scoped>
 .chip {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--chip-padding);
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   text-transform: capitalize;
 }
 

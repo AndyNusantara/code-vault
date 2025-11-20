@@ -4,7 +4,7 @@
 
     <AppHeader :toggle-sidebar="toggleSidebar" />
 
-    <v-main class="d-flex flex-column">
+    <v-main>
       <v-container>
         <router-view />
       </v-container>
@@ -15,7 +15,6 @@
     </v-dialog>
 
     <v-overlay
-      :model-value="false"
       class="align-start justify-start"
       @click="isSidebarCollapsed = true"
     />

@@ -1,23 +1,25 @@
 <template>
-  <v-app-bar color="surface" elevation="2" class="position-fixed">
+  <v-app-bar color="surface" elevation="1" class="position-fixed h-auto py-2">
     <template #prepend>
-      <v-btn v-if="isMobile" icon @click="props.toggleSidebar()" size="small">
-        <v-icon>mdi-menu</v-icon>
+      <v-btn v-if="isMobile" icon @click="props.toggleSidebar()">
+        <v-icon icon="mdi-menu" />
       </v-btn>
     </template>
 
-    <v-app-bar-title class="text-h6 font-weight-bold">
-      Code Snippets
-      <div class="text-caption text-medium-emphasis">
+    <v-app-bar-title>
+      <span class="text-h5 text-on-surface font-weight-bold d-block"
+        >CodeVault</span
+      >
+      <span class="text-caption text-on-surface text-medium-emphasis d-block">
         Manage and organize your code collection
-      </div>
+      </span>
     </v-app-bar-title>
 
     <template #append>
       <div
         v-if="!isMobile"
         class="d-flex align-center ga-2"
-        style="width: 450px"
+        style="width: 480px"
       >
         <v-text-field
           v-model="searchQuery"
@@ -27,26 +29,22 @@
           prepend-inner-icon="mdi-magnify"
           hide-details
           class="flex-grow-1"
+          clearable
         />
 
-        <v-btn icon @click="toggleTheme()" size="small">
-          <v-icon v-if="theme.current.value.dark">mdi-weather-sunny</v-icon>
-          <v-icon v-else>mdi-weather-night</v-icon>
+        <v-btn icon @click="toggleTheme()">
+          <v-icon v-if="theme.current.value.dark" icon="mdi-weather-sunny" />
+          <v-icon v-else icon="mdi-weather-night" />
         </v-btn>
 
-        <v-btn
-          color="primary"
-          @click="showAddForm"
-          prepend-icon="mdi-plus"
-          size="small"
-        >
+        <v-btn color="primary" @click="showAddForm" prepend-icon="mdi-plus">
           Add Snippet
         </v-btn>
       </div>
 
-      <v-btn v-if="isMobile" icon @click="toggleTheme()" size="small">
-        <v-icon v-if="theme.current.value.dark">mdi-weather-sunny</v-icon>
-        <v-icon v-else>mdi-weather-night</v-icon>
+      <v-btn v-if="isMobile" icon @click="toggleTheme()">
+        <v-icon v-if="theme.current.value.dark" icon="mdi-weather-sunny" />
+        <v-icon v-else icon="mdi-weather-night" />
       </v-btn>
     </template>
 
@@ -62,7 +60,7 @@
           class="flex-grow-1 px-4"
         />
 
-        <v-btn color="primary" @click="showAddForm" icon size="small">
+        <v-btn color="primary" @click="showAddForm" icon>
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-toolbar>
@@ -71,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, inject } from "vue";
 import { useSnippetStore } from "@/stores/snippetStore";
 import { useTheme } from "vuetify";
 import { useModalStore } from "@/stores/modalStore";

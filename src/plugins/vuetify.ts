@@ -19,32 +19,22 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          // Core colors (only 3 main colors)
-          primary: "#3b82f6", // Brand blue
-          background: "#ffffff", // App background
-          surface: "#f8fafc", // Card backgrounds
+          primary: "#3b82f6",
+          background: "#f1f5f9",
+          surface: "#ffffff",
 
-          // Text colors (only 2 levels)
-          "on-background": "#1a202c", // Primary text
-          "on-surface": "#4a5568", // Secondary text
-
-          // Borders (just 1 color)
-          outline: "#979797ff",
+          "on-background": "#1e293bff",
+          "on-surface": "#1a1f26ff",
         },
       },
       dark: {
         colors: {
-          // Core colors (same structure, different values)
-          primary: "#60a5fa", // Lighter brand blue
-          background: "#0f172a", // Dark app background
-          surface: "#1e293b", // Dark card backgrounds
+          primary: "#60a5fa",
+          background: "#0f172a",
+          surface: "#1e293b",
 
-          // Text colors
-          "on-background": "#f1f5f9", // Primary text (white)
-          "on-surface": "#cbd5e1", // Secondary text (light gray)
-
-          // Borders
-          outline: "#94a3b8",
+          "on-background": "#f1f5f9",
+          "on-surface": "#cbd5e1",
         },
       },
     },

@@ -13,14 +13,6 @@ export const useSnippetStore = defineStore("snippets", () => {
     showFavorites: false,
   });
 
-  const allTags = () => {
-    const test = snippets.value.map((item) => {
-      return item.tags.concat();
-    });
-
-    return test;
-  };
-
   const loadFromStorage = () => {
     try {
       const stored = localStorage.getItem("snippets");

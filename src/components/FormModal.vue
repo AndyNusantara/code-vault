@@ -101,19 +101,20 @@
           <v-card class="pa-2">
             <v-icon
               icon="mdi-alert"
-              class="items-center justify-center w-100 pa-10"
+              class="items-center justify-center w-100 py-7"
               color="red"
+              size="large"
             />
             <v-card-title class="d-flex items-center justify-center">
               Delete Snippet
             </v-card-title>
 
-            <v-card-subtitle class="d-flex items-center justify-center">
+            <v-card-subtitle class="text-wrap text-center">
               You're going to delete the {{ data?.title }} snippet. Are you
               sure?
             </v-card-subtitle>
 
-            <v-card-actions class="justify-center pt-10">
+            <v-card-actions class="justify-center pt-10 ga-5">
               <v-btn variant="outlined" @click="openDeletionOverlay = false">
                 No, keep it.
               </v-btn>

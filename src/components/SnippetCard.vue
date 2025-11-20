@@ -1,8 +1,8 @@
 <template>
-  <v-card variant="outlined" b class="h-100">
+  <v-card variant="outlined" elevation="" class="h-100 border-sm bg-surface">
     <v-list-item class="px-6" height="88">
       <template v-slot:title>
-        <span class="text-h6 text-wrap">
+        <span class="text-h6 text-wrap text-on-surface">
           {{ snippet.title }}
         </span>
       </template>
@@ -12,7 +12,15 @@
           <v-icon icon="mdi-pencil" />
         </v-btn>
         <v-btn icon variant="text" @click="toggleFav">
-          <v-icon :color="snippet.isFavorite ? 'yellow' : 'white'">
+          <v-icon
+            :color="
+              snippet.isFavorite
+                ? 'orange'
+                : theme.current.value.dark
+                ? 'white'
+                : 'black'
+            "
+          >
             {{ snippet.isFavorite ? "mdi-star" : "mdi-star-outline" }}
           </v-icon>
         </v-btn>

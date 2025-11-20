@@ -1,4 +1,4 @@
-# 󱉽 CodeVault
+# 💎 CodeVault
 
 A beautiful, offline-first code snippet manager built with Vue 3 and TypeScript. Organize, search, and manage your code snippets with elegant syntax highlighting and smart filtering.
 
